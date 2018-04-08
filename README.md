@@ -1,21 +1,12 @@
 # kubernetes-for-china
 
 
-1. Install Docker 17.03
+1. Install Docker
+
+- [Get Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
 ```bash
-apt-get update
-apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository \
-   "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-   $(lsb_release -cs) \
-   stable"
-apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}')
+$ curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
 
 2. Installing kubeadm, kubelet and kubectl 
@@ -24,7 +15,7 @@ apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | g
 
 ```bash
 apt-get update && apt-get install -y apt-transport-https
-curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - 
+curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
 cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
 EOF
@@ -47,5 +38,5 @@ $ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml
 
 # Master Isolation (if single-machine Kubernetes cluster )
-kubectl taint nodes --all node-role.kubernetes.io/master-
+$ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
