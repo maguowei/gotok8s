@@ -42,13 +42,13 @@ $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Docum
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
-## Helm
+## [Helm](https://github.com/kubernetes/helm)
 
 
 ```bash
 # install
 $ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz | tar xzv
-$ sudo cp linux-amd64/helm /usr/local/bin/
+$ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
 # initialize the local CLI and also install Tiller into your Kubernetes cluster
@@ -65,4 +65,24 @@ $ helm delete my_mysql
 
 # remove the release from the store and make its name free for later use
 $ helm delete --purge my_mysql
+```
+
+
+## [Draft](https://github.com/Azure/draft)
+
+```bash
+
+# install
+$ curl -s https://azuredraft.blob.core.windows.net/draft/draft-canary-linux-amd64.tar.gz | tar xzv
+$ sudo cp linux-amd64/draft /usr/local/bin
+$ rm -rf linux-amd64
+
+# initialize
+$ draft init
+
+# demo usage
+
+$ git clone https://github.com/maguowei/draft-django-demo.git
+$ cd draft-django-demo
+$ draft up
 ```
