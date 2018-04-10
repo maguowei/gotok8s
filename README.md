@@ -1,6 +1,8 @@
 # kubernetes-for-china
 
-## Install
+## Kubernetes Install
+
+- [install kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
 
 1. Install Docker
 
