@@ -1,5 +1,6 @@
 # kubernetes-for-china
 
+## Install
 
 1. Install Docker
 
@@ -39,4 +40,29 @@ $ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Docum
 
 # Master Isolation (if single-machine Kubernetes cluster )
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
+```
+
+## Helm
+
+
+```bash
+# install
+$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz | tar xzv
+$ sudo cp linux-amd64/helm /usr/local/bin/
+$ rm -rf linux-amd64
+
+# initialize the local CLI and also install Tiller into your Kubernetes cluster
+$ helm init
+
+# update charts repo
+$ helm repo update
+
+# install mysql chart
+$ helm install --name my_mysql stable/mysql
+
+# delete
+$ helm delete my_mysql
+
+# remove the release from the store and make its name free for later use
+$ helm delete --purge my_mysql
 ```
