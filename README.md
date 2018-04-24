@@ -69,6 +69,35 @@ $ helm delete my-mysql
 $ helm delete --purge my-mysql
 ```
 
+## [Rook](https://github.com/rook/rook)
+
+```bash
+# Preload hyperkube image
+$ docker pull maguowei/hyperkube:v1.7.12
+$ docker tag maguowei/hyperkube:v1.7.12 k8s.gcr.io/hyperkube:v1.7.12
+$ docker rmi maguowei/hyperkube:v1.7.12
+
+# install Rook Operator: https://rook.io/docs/rook/master/helm-operator.html
+$ helm repo add rook-master https://charts.rook.io/master
+$ helm search rook
+$ helm install --namespace rook-system rook-master/rook --version <version>
+
+# create the Rook cluster
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/rook-cluster.yaml
+
+# list pods in the rook namespace.
+$ kubectl -n rook get pod
+
+#  creating storage pools.
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/rook-pool.yaml
+# create block storage to be consumed by a pod
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/rook-storageclass.yaml
+
+# set rook-block as default storageclass 
+$ kubectl patch storageclass rook-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+```
+
 
 ## [Draft](https://github.com/Azure/draft)
 
