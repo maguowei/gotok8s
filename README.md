@@ -97,23 +97,3 @@ $ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/ex
 $ kubectl patch storageclass rook-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
 ```
-
-
-## [Draft](https://github.com/Azure/draft)
-
-```bash
-
-# install
-$ curl -s https://azuredraft.blob.core.windows.net/draft/draft-canary-linux-amd64.tar.gz | tar xzv
-$ sudo cp linux-amd64/draft /usr/local/bin
-$ rm -rf linux-amd64
-
-# initialize
-$ draft init
-
-# demo usage
-
-$ git clone https://github.com/maguowei/draft-django-demo.git
-$ cd draft-django-demo
-$ draft up
-```
