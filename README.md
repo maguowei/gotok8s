@@ -32,13 +32,12 @@ apt-get install -y kubelet kubeadm kubectl
 
 ```bash
 $ ./load_images.sh
-$ docker pull quay.io/coreos/flannel:v0.9.1-amd64
 ```
 
 4. Create a Cluster
 ```bash
 $ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
-$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documentation/kube-flannel.yml
+$ sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 
 # Master Isolation (if single-machine Kubernetes cluster )
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
@@ -49,7 +48,7 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ```bash
 # install
-$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz | tar xzv
+$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
