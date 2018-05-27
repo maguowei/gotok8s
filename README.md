@@ -76,23 +76,23 @@ $ docker pull maguowei/hyperkube:v1.7.12
 $ docker tag maguowei/hyperkube:v1.7.12 k8s.gcr.io/hyperkube:v1.7.12
 $ docker rmi maguowei/hyperkube:v1.7.12
 
+$ docker pull rook/ceph:master
+
 # install Rook Operator: https://rook.io/docs/rook/master/helm-operator.html
-$ helm repo add rook-master https://charts.rook.io/master
-$ helm search rook
-$ helm install --namespace rook-system rook-master/rook --version <version>
+$ kubectl create -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/operator.yaml
 
 # create the Rook cluster
-$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/rook-cluster.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/cluster.yaml
 
-# list pods in the rook namespace.
-$ kubectl -n rook get pod
+# list pods in the rook-ceph namespace.
+$ kubectl -n rook-ceph get pod
 
 #  creating storage pools.
-$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/rook-pool.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/pool.yaml
 # create block storage to be consumed by a pod
-$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/rook-storageclass.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/storageclass.yaml
 
 # set rook-block as default storageclass 
-$ kubectl patch storageclass rook-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+$ kubectl patch storageclass rook-ceph-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
 ```
