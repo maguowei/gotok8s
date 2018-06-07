@@ -71,11 +71,6 @@ $ helm delete --purge my-mysql
 ## [Rook](https://github.com/rook/rook)
 
 ```bash
-# Preload hyperkube image
-$ docker pull maguowei/hyperkube:v1.7.12
-$ docker tag maguowei/hyperkube:v1.7.12 k8s.gcr.io/hyperkube:v1.7.12
-$ docker rmi maguowei/hyperkube:v1.7.12
-
 $ docker pull rook/ceph:master
 
 # install Rook Operator: https://rook.io/docs/rook/master/helm-operator.html
