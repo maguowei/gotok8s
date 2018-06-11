@@ -101,7 +101,8 @@ $ kubectl patch storageclass rook-ceph-block -p '{"metadata": {"annotations":{"s
 # Start the OpenEBS Services using Operator:
 $ kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-operator.yaml
 
-# As an alternative to the above comment you can also use Helm to install OpenEBS if you like [stable/openebs](https://github.com/kubernetes/charts/tree/master/stable/openebs):
+# As an alternative to the above comment you can also use Helm package manager to install OpenEBS. 
+# More info on OpenEBS Chart: https://github.com/kubernetes/charts/tree/master/stable/openebs
 $ helm install stable/openebs
 
 # Customize or use the Default storageclasses
