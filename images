@@ -1,7 +1,7 @@
-k8s.gcr.io/kube-proxy-amd64:v1.10.3=registry.cn-hangzhou.aliyuncs.com/google_containers/kube-proxy-amd64:v1.10.3
-k8s.gcr.io/kube-controller-manager-amd64:v1.10.3=registry.cn-hangzhou.aliyuncs.com/google_containers/kube-controller-manager-amd64:v1.10.3
-k8s.gcr.io/kube-scheduler-amd64:v1.10.3=registry.cn-hangzhou.aliyuncs.com/google_containers/kube-scheduler-amd64:v1.10.3
-k8s.gcr.io/kube-apiserver-amd64:v1.10.3=registry.cn-hangzhou.aliyuncs.com/google_containers/kube-apiserver-amd64:v1.10.3
+k8s.gcr.io/kube-proxy-amd64:v1.10.4=registry.cn-hangzhou.aliyuncs.com/google_containers/kube-proxy-amd64:v1.10.4
+k8s.gcr.io/kube-controller-manager-amd64:v1.10.4=registry.cn-hangzhou.aliyuncs.com/google_containers/kube-controller-manager-amd64:v1.10.4
+k8s.gcr.io/kube-scheduler-amd64:v1.10.4=registry.cn-hangzhou.aliyuncs.com/google_containers/kube-scheduler-amd64:v1.10.4
+k8s.gcr.io/kube-apiserver-amd64:v1.10.4=registry.cn-hangzhou.aliyuncs.com/google_containers/kube-apiserver-amd64:v1.10.4
 k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64:1.14.8=registry.cn-hangzhou.aliyuncs.com/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.8
 k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.8=registry.cn-hangzhou.aliyuncs.com/google_containers/k8s-dns-sidecar-amd64:1.14.8
 k8s.gcr.io/k8s-dns-kube-dns-amd64:1.14.8=registry.cn-hangzhou.aliyuncs.com/google_containers/k8s-dns-kube-dns-amd64:1.14.8
