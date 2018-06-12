@@ -91,3 +91,30 @@ $ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/ex
 $ kubectl patch storageclass rook-ceph-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
 ```
+
+## [OpenEBS](https://github.com/openebs/openebs)
+
+```bash
+# OpenEBS can be setup in few easy steps. 
+# You can get going on your choice of Kubernetes cluster by having open-iscsi installed on the Kubernetes nodes and running the openebs-operator using kubectl.
+
+# Start the OpenEBS Services using Operator:
+$ kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-operator.yaml
+
+# As an alternative to the above comment you can also use Helm package manager to install OpenEBS. 
+# More info on OpenEBS Chart: https://github.com/kubernetes/charts/tree/master/stable/openebs
+$ helm install stable/openebs
+
+# Customize or use the Default storageclasses
+$ kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-storageclasses.yaml
+
+# List predefined OpenEBS Storage Classes
+$ kubectl get sc
+
+# set openEBS Standard Storage Class as default storageclass 
+$ kubectl patch storageclass openebs-standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+# Optional: Enable monitoring using Prometheus and Grafana
+$ kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-monitoring-pg.yaml
+
+```
