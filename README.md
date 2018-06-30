@@ -2,8 +2,6 @@
 
 ## Kubernetes Install
 
-- [install kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
-
 1. Install Docker
 
 - [Get Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
@@ -12,8 +10,9 @@
 $ curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
 
-2. Installing kubeadm, kubelet and kubectl 
+2. Installing kubeadm, kubelet and kubectl
 
+- [install kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
 - [Kubernetes mirror](https://opsx.alibaba.com/mirror)
 
 ```bash
@@ -31,6 +30,10 @@ apt-get install -y kubelet kubeadm kubectl
 - [gcr.io images mirror on aliyun](https://dev.aliyun.com/list.html?namePrefix=google-containers)
 
 ```bash
+# list images kubeadm will use
+$ kubeadm config images list
+
+# pre load image
 $ ./load_images.sh
 ```
 
