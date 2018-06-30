@@ -58,6 +58,11 @@ $ rm -rf linux-amd64
 # initialize the local CLI and also install Tiller into your Kubernetes cluster
 $ helm init
 
+# fix https://github.com/kubernetes/helm/issues/3130
+$ kubectl create serviceaccount --namespace kube-system tiller
+$ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+$ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+
 # update charts repo
 $ helm repo update
 
