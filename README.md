@@ -1,5 +1,7 @@
 # kubernetes-for-china
 
+ With Kubernetes v1.12.1
+
 ## Kubernetes Install
 
 1. Install Docker
@@ -51,7 +53,7 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ```bash
 # install
-$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.10.0-linux-amd64.tar.gz | tar xzv
+$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
