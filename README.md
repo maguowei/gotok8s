@@ -1,6 +1,6 @@
 # kubernetes-for-china
 
- With Kubernetes v1.12.1
+ With Kubernetes v1.12.2
 
 ## Kubernetes Install
 
@@ -33,7 +33,7 @@ apt-get install -y kubelet kubeadm kubectl
 
 ```bash
 # list images kubeadm will use
-$ kubeadm config images list --kubernetes-version=v1.12.1
+$ kubeadm config images list --kubernetes-version=v1.12.2
 
 # pre load image
 $ ./load_images.sh
@@ -41,7 +41,7 @@ $ ./load_images.sh
 
 4. Create a Cluster
 ```bash
-$ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+$ sudo kubeadm init --config init.yml
 $ sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 
 # Master Isolation (if single-machine Kubernetes cluster )
