@@ -33,7 +33,7 @@ apt-get install -y kubelet kubeadm kubectl
 
 ```bash
 # list images kubeadm will use
-$ kubeadm config images list
+$ kubeadm config images list --kubernetes-version=v1.12.1
 
 # pre load image
 $ ./load_images.sh
