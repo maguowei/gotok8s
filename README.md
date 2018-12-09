@@ -1,23 +1,21 @@
 # kubernetes-for-china
 
- With Kubernetes v1.12.2
+ - 当前在 Ubuntu 18.04 (With Kubernetes v1.12.2) 经过测试可用
 
-## Kubernetes Install
+## 安装 `Kubernetes`
 
-1. Install Docker
-
-- [Get Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+1. [安装Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
 ```bash
 $ curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
 
-2. Installing kubeadm, kubelet and kubectl
+2. [安装 kubeadm, kubelet and kubectl]((https://kubernetes.io/docs/setup/independent/install-kubeadm/))
 
-- [install kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
-- [Kubernetes mirror](https://opsx.alibaba.com/mirror)
+    - [Alibaba Kubernetes mirror](https://opsx.alibaba.com/mirror)
 
 ```bash
+# root（sudo -i)
 apt-get update && apt-get install -y apt-transport-https
 curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
 cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
@@ -27,21 +25,23 @@ apt-get update
 apt-get install -y kubelet kubeadm kubectl
 ```
 
-3. Preload Kubernetes images form Alibaba Cloud Registry Service
-
-- [gcr.io images mirror on aliyun](https://dev.aliyun.com/list.html?namePrefix=google-containers)
+3. 预先从阿里的 `gcr.io` 镜像服务拉取必要的 `images`
 
 ```bash
-# list images kubeadm will use
-$ kubeadm config images list --kubernetes-version=v1.12.2
-
-# pre load image
 $ ./load_images.sh
 ```
 
-4. Create a Cluster
+
+4. 使用 `kubeadm` 创建 `Kubernetes` 集群
 ```bash
+
+# 可以用下面的命令列出 kubeadm 需要的 images
+$ kubeadm config images list --kubernetes-version=v1.12.2
+
+# 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
 $ sudo kubeadm init --config init.yml
+
+# 使用 `kube-router` 网络
 $ sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 
 # Master Isolation (if single-machine Kubernetes cluster )
@@ -52,12 +52,12 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 
 ```bash
-# install
+# 安装
 $ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
-# initialize the local CLI and also install Tiller into your Kubernetes cluster
+# 本地初始化，并将 `Tiller` 安装到 `Kubernetes` 集群
 $ helm init
 
 # fix https://github.com/kubernetes/helm/issues/3130
@@ -65,16 +65,16 @@ $ kubectl create serviceaccount --namespace kube-system tiller
 $ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 $ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
-# update charts repo
+# 更新本地 charts repo
 $ helm repo update
 
-# install mysql chart
+# 测试安装 mysql chart
 $ helm install --name my-mysql stable/mysql
 
-# delete
+# 删除 mysql
 $ helm delete my-mysql
 
-# remove the release from the store and make its name free for later use
+# 删除并释放该部署名以便重用
 $ helm delete --purge my-mysql
 ```
 
@@ -83,21 +83,21 @@ $ helm delete --purge my-mysql
 ```bash
 $ docker pull rook/ceph:master
 
-# install Rook Operator: https://rook.io/docs/rook/master/helm-operator.html
+# 安装 Rook Operator: https://rook.io/docs/rook/master/helm-operator.html
 $ kubectl create -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/operator.yaml
 
-# create the Rook cluster
+# 创建 Rook cluster
 $ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/cluster.yaml
 
-# list pods in the rook-ceph namespace.
+# 列出 rook-ceph 命名空间下的 pods
 $ kubectl -n rook-ceph get pod
 
-#  creating storage pools.
+# 创建 storage pools.
 $ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/pool.yaml
-# create block storage to be consumed by a pod
+# 创建块存储(block storage)
 $ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/storageclass.yaml
 
-# set rook-block as default storageclass 
+# 将 rook-block 设置为默认的 storageclass 
 $ kubectl patch storageclass rook-ceph-block -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ```
 
