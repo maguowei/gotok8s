@@ -36,7 +36,7 @@ $ ./load_images.sh
 
 # 确保关闭交换空间(running with swap on is not supported. Please disable swap)
 $ sudo swapoff -a
-# 永久关闭需要编辑部 `/etc/fstab` 注释掉 `swap` 相关的那行
+# 永久关闭需要编辑 `/etc/fstab` 注释掉 `swap` 所在行
 
 # 可以用下面的命令列出 kubeadm 需要的 images
 $ kubeadm config images list --kubernetes-version=v1.13.0
