@@ -31,15 +31,20 @@ apt-get install -y kubelet kubeadm kubectl
 $ ./load_images.sh
 ```
 
-
 4. 使用 `kubeadm` 创建 `Kubernetes` 集群
 ```bash
+
+# 确保关闭交换空间(running with swap on is not supported. Please disable swap)
+$ sudo swapoff -a
+# 永久关闭需要编辑部 `/etc/fstab` 注释掉 `swap` 相关的那行
 
 # 可以用下面的命令列出 kubeadm 需要的 images
 $ kubeadm config images list --kubernetes-version=v1.13.0
 
 # 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
 $ sudo kubeadm init --config init.yml
+# 或者执行(忽略Docker版本检查)
+$ sudo kubeadm init --config init.yml --ignore-preflight-errors=SystemVerification
 
 # 使用 `kube-router` 网络
 $ sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
