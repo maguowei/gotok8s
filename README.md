@@ -1,6 +1,6 @@
 # kubernetes-for-china
 
- - 当前在 Ubuntu 18.04 (With Kubernetes v1.13.0) 经过测试可用
+ - 当前在 Ubuntu 18.04 (With Kubernetes v1.13.2) 经过测试可用
 
 ## 安装 `Kubernetes`
 
@@ -39,7 +39,7 @@ $ sudo swapoff -a
 # 永久关闭需要编辑 `/etc/fstab` 注释掉 `swap` 所在行
 
 # 可以用下面的命令列出 kubeadm 需要的 images
-$ kubeadm config images list --kubernetes-version=v1.13.0
+$ kubeadm config images list --kubernetes-version=v1.13.2
 
 # 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
 $ sudo kubeadm init --config init.yml
