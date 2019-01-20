@@ -1,7 +1,5 @@
 # kubernetes-for-china
 
- - 当前在 Ubuntu 18.04 (With Kubernetes v1.13.2) 经过测试可用
-
 ## 安装 `Kubernetes`
 
 1. [安装Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
@@ -133,4 +131,11 @@ df -h
 
 # 卸载文件系统
 umount /cephfs
+```
+
+
+## 升级 Kubernetes 版本
+```bash
+# 修改 `init.yml` 中 `kubernetesVersion` 版本号， 执行
+sudo kubeadm upgrade apply --config init.yml --ignore-preflight-errors=SystemVerification
 ```
