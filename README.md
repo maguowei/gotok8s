@@ -148,6 +148,37 @@ df -h
 umount /cephfs
 ```
 
+```bash
+# Object Storage
+
+# Create an Object Store
+kubectl create -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/object.yaml
+
+# To confirm the object store is configured, wait for the rgw pod to start
+kubectl -n rook-ceph get pod -l app=rook-ceph-rgw
+
+# Create a User
+kubectl create -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/object-user.yaml
+
+# To confirm the object store user is configured, describe the secret
+kubectl -n rook-ceph describe secret rook-ceph-object-user-my-store-my-user
+
+# To directly retrieve the secrets:
+kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-my-user -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
+kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-my-user -o yaml | grep SecretKey | awk '{print $2}' | base64 --decode
+
+# Access External to the Cluster
+kubectl create -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/rgw-external.yaml
+
+# See both rgw services running and notice what port the external service is running on:
+kubectl -n rook-ceph get service rook-ceph-rgw-my-store rook-ceph-rgw-my-store-external
+
+# Consume the Object Storage
+export AWS_ENDPOINT=10.104.35.31:80
+export AWS_ACCESS_KEY_ID=XEZDB3UJ6X7HVBE7X7MA
+export AWS_SECRET_ACCESS_KEY=7yGIZON7EhFORz0I40BFniML36D2rl8CQQ5kXU6l
+```
+
 
 ## 升级 Kubernetes 版本
 ```bash
