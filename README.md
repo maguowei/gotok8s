@@ -56,7 +56,7 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ```bash
 # 安装
-$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.12.1-linux-amd64.tar.gz | tar xzv
+$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
