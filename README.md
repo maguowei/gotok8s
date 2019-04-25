@@ -60,7 +60,7 @@ $ sudo kubeadm init --config init.yml
 $ sudo kubeadm init --config init.yml --ignore-preflight-errors=SystemVerification
 
 # 使用 `kube-router` 网络
-$ sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 
 # Master Isolation (if single-machine Kubernetes cluster )
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
