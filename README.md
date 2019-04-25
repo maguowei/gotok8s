@@ -52,7 +52,7 @@ $ sudo swapoff -a
 # 永久关闭需要编辑 `/etc/fstab` 注释掉 `swap` 所在行
 
 # 可以用下面的命令列出 kubeadm 需要的 images
-$ kubeadm config images list --kubernetes-version=v1.14.0
+$ kubeadm config images list --kubernetes-version=v1.14.1
 
 # 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
 $ sudo kubeadm init --config init.yml
