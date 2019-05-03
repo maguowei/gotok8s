@@ -76,12 +76,8 @@ $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
 # 本地初始化，并将 `Tiller` 安装到 `Kubernetes` 集群
-$ helm init
-
-# fix https://github.com/kubernetes/helm/issues/3130
-$ kubectl create serviceaccount --namespace kube-system tiller
-$ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-$ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+$ kubectl create -f helm-rbac-config.yaml
+$ helm init --service-account tiller
 
 # 更新本地 charts repo
 $ helm repo update
