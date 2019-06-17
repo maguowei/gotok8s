@@ -52,7 +52,7 @@ $ sudo swapoff -a
 # 永久关闭需要编辑 `/etc/fstab` 注释掉 `swap` 所在行
 
 # 可以用下面的命令列出 kubeadm 需要的 images
-$ kubeadm config images list --kubernetes-version=v1.14.1
+$ kubeadm config images list --kubernetes-version=v1.14.3
 
 # 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
 $ sudo kubeadm init --config init.yml
@@ -71,7 +71,7 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ```bash
 # 安装
-$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz | tar xzv
+$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
