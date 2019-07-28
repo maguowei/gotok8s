@@ -62,6 +62,11 @@ $ sudo kubeadm init --config init.yml
 # 或者执行(忽略Docker版本检查)
 $ sudo kubeadm init --config init.yml --ignore-preflight-errors=SystemVerification
 
+# KUBECONFIG 设置
+$ mkdir -p $HOME/.kube
+$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
 # 使用 `kube-router` 网络
 $ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 
