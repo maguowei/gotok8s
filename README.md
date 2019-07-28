@@ -85,6 +85,10 @@ $ rm -rf linux-amd64
 # 本地初始化
 $ helm init
 
+# 使用 azure.cn 提供的 charts 镜像
+$ helm repo add stable https://mirror.azure.cn/kubernetes/charts/
+$ helm repo add incubator https://mirror.azure.cn/kubernetes/charts-incubator/
+
 # 更新本地 charts repo
 $ helm repo update
 
