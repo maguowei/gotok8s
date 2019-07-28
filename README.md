@@ -78,25 +78,21 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 ```bash
 # 安装
-$ curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz | tar xzv
+$ curl -s https://get.helm.sh/helm-v3.0.0-alpha.2-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
-# 本地初始化，并将 `Tiller` 安装到 `Kubernetes` 集群
-$ kubectl create -f helm-rbac-config.yaml
-$ helm init --service-account tiller
+# 本地初始化
+$ helm init
 
 # 更新本地 charts repo
 $ helm repo update
 
-# 测试安装 mysql chart
-$ helm install --name my-mysql stable/mysql
+# 测试安装 redis chart
+$ helm install my-redis stable/redis
 
 # 删除 mysql
-$ helm delete my-mysql
-
-# 删除并释放该部署名以便重用
-$ helm delete --purge my-mysql
+$ helm uninstall my-redis
 ```
 
 ## [Rook](https://github.com/rook/rook)
