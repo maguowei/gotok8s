@@ -1,12 +1,13 @@
-apiVersion: kubeadm.k8s.io/v1beta1
+apiVersion: kubeadm.k8s.io/v1beta2
 kind: InitConfiguration
 nodeRegistration:
   kubeletExtraArgs:
-    pod-infra-container-image: registry.aliyuncs.com/google_containers/pause-amd64:3.1
+    pod-infra-container-image: gotok8s/pause:3.1
 ---
-apiVersion: kubeadm.k8s.io/v1beta1
+apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
-imageRepository: registry.aliyuncs.com/google_containers
-kubernetesVersion: v1.15.0
+clusterName: kubernetes
+imageRepository: gotok8s
+kubernetesVersion: v1.15.1
 networking:
   podSubnet: 10.244.0.0/16

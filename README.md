@@ -51,8 +51,11 @@ $ ./load_images.sh
 $ sudo swapoff -a
 # 永久关闭需要编辑 `/etc/fstab` 注释掉 `swap` 所在行
 
+# 获取最新 Kubernetes 版本号
+$ KUBERNETES_RELEASE_VERSION="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
+
 # 可以用下面的命令列出 kubeadm 需要的 images
-$ kubeadm config images list --kubernetes-version=v1.15.0
+$ kubeadm config images list --kubernetes-version=${KUBERNETES_RELEASE_VERSION}
 
 # 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
 $ sudo kubeadm init --config init.yml
@@ -67,7 +70,6 @@ $ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
 ## [Helm](https://github.com/kubernetes/helm)
-
 
 ```bash
 # 安装
@@ -175,8 +177,8 @@ export AWS_ACCESS_KEY_ID=XEZDB3UJ6X7HVBE7X7MA
 export AWS_SECRET_ACCESS_KEY=7yGIZON7EhFORz0I40BFniML36D2rl8CQQ5kXU6l
 ```
 
-
 ## 升级 Kubernetes 版本
+
 ```bash
 # 修改 `init.yml` 中 `kubernetesVersion` 版本号， 执行
 sudo kubeadm upgrade apply --config init.yml --ignore-preflight-errors=SystemVerification
