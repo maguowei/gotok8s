@@ -1,4 +1,4 @@
-# Kubernetes Cookbook
+# Goto Kubernetes
 
 ## 安装 `Kubernetes`
 
