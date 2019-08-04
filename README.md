@@ -8,7 +8,7 @@
 $ curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
 
-2. [安装 kubeadm, kubelet and kubectl]((https://kubernetes.io/docs/setup/independent/install-kubeadm/))
+2. [安装 kubeadm, kubelet and kubectl](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
 
     - [Alibaba Kubernetes mirror](https://opsx.alibaba.com/mirror)
 
@@ -38,15 +38,9 @@ setenforce 0
 yum install -y kubelet kubeadm kubectl
 ```
 
-3. 预先从阿里的 `gcr.io` 镜像服务拉取必要的 `images`
+3. 使用 `kubeadm` 创建 `Kubernetes` 集群
 
 ```bash
-$ ./load_images.sh
-```
-
-4. 使用 `kubeadm` 创建 `Kubernetes` 集群
-```bash
-
 # 确保关闭交换空间(running with swap on is not supported. Please disable swap)
 $ sudo swapoff -a
 # 永久关闭需要编辑 `/etc/fstab` 注释掉 `swap` 所在行
