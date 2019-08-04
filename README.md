@@ -2,6 +2,9 @@
 
 ## 安装 `Kubernetes`
 
+> 对于 `Mac` 用户可以参考:  [k8s-docker-desktop-for-mac](https://github.com/maguowei/k8s-docker-desktop-for-mac), 
+通过 `Docker Desktop for Mac` 开启和使用 Kubernetes
+
 1. [安装Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
 ```bash
