@@ -1,4 +1,4 @@
-# kubernetes-for-china
+# Kubernetes Cookbook
 
 ## 安装 `Kubernetes`
 
@@ -95,12 +95,23 @@ $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashbo
 
 ## [Helm](https://github.com/kubernetes/helm)
 
+### 安装
+
 ```bash
-# 安装
+# Linux 用户
 $ curl -s https://get.helm.sh/helm-v3.0.0-alpha.2-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
+# Mac 用户
+$ curl -s https://get.helm.sh/helm-v3.0.0-alpha.2-darwin-amd64.tar.gz | tar xzv
+$ sudo cp darwin-amd64/helm /usr/local/bin
+$ rm -rf darwin-amd64
+```
+
+### 使用
+
+```bash
 # 本地初始化
 $ helm init
 
