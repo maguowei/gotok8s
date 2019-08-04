@@ -68,6 +68,22 @@ $ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
+## [Kubernetes Dashboard](https://github.com/kubernetes/dashboard)
+
+部署 Kubernetes Dashboard
+
+```bash
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
+
+# 开启本机访问代理
+$ kubectl proxy
+```
+
+通过下面的连接访问 Dashboard: [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/)
+
+创建`Dashboard`管理员用户并用`Token`登陆:
+[https://github.com/kubernetes/dashboard/wiki/Creating-sample-user](https://github.com/kubernetes/dashboard/wiki/Creating-sample-user)
+
 ## [Helm](https://github.com/kubernetes/helm)
 
 ```bash
