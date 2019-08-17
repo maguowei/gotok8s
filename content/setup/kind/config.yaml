@@ -1,0 +1,21 @@
+kind: Cluster
+apiVersion: kind.sigs.k8s.io/v1alpha3
+kubeadmConfigPatches:
+- |
+  apiVersion: kubeadm.k8s.io/v1beta2
+  kind: InitConfiguration
+  metadata:
+    name: config
+  nodeRegistration:
+    kubeletExtraArgs:
+      pod-infra-container-image: gotok8s/pause:3.1
+- |
+  apiVersion: kubeadm.k8s.io/v1beta2
+  kind: ClusterConfiguration
+  metadata:
+    name: config
+  imageRepository: gotok8s
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
