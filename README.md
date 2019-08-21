@@ -100,6 +100,10 @@ $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashbo
 
 ### 安装
 
+这里使用最新的 `Helm 3`, `Helm 3` 相比 `Helm 2.x` 有了巨大的变化
+
+详细使用说明请参考 [`Helm`官方文档](https://v3.helm.sh/docs/)
+
 ```bash
 # Linux 用户
 $ curl -s https://get.helm.sh/helm-v3.0.0-alpha.2-linux-amd64.tar.gz | tar xzv
