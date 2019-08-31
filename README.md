@@ -1,5 +1,7 @@
 # Goto Kubernetes
 
+[![github workflow](https://github.com/maguowei/gotok8s/workflows/k8s%20image%20sync/badge.svg)](https://github.com/maguowei/gotok8s/actions)
+
 ## 安装 `Kubernetes`
 
 > 对于 `Mac` 用户可以参考:  [k8s-docker-desktop-for-mac](https://github.com/maguowei/k8s-docker-desktop-for-mac), 
