@@ -1,6 +1,6 @@
 name: k8s image sync
 on:
-  schedules:
+  schedule:
   - cron: 0 */6 * * *
 jobs:
   dockerLogin:
