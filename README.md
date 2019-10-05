@@ -109,12 +109,12 @@ $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashbo
 
 ```bash
 # Linux 用户
-$ curl -s https://get.helm.sh/helm-v3.0.0-alpha.2-linux-amd64.tar.gz | tar xzv
+$ curl -s https://get.helm.sh/helm-v3.0.0-beta.3-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
 # Mac 用户
-$ curl -s https://get.helm.sh/helm-v3.0.0-alpha.2-darwin-amd64.tar.gz | tar xzv
+$ curl -s https://get.helm.sh/helm-v3.0.0-beta.3-darwin-amd64.tar.gz | tar xzv
 $ sudo cp darwin-amd64/helm /usr/local/bin
 $ rm -rf darwin-amd64
 ```
