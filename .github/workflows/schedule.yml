@@ -1,5 +1,7 @@
 name: k8s image sync
-on: push
+on:
+  schedule:
+  - cron: 0 */6 * * *
 jobs:
   k8s-image-sync:
     name: k8s image sync
