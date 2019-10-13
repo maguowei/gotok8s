@@ -23,4 +23,4 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.GITHUB_DOCKER_PASSWORD }}
         registry: docker.pkg.github.com
-        repository: maguowei/gotok8s
+        repository: gotok8s/gotok8s
