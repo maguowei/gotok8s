@@ -1,6 +1,6 @@
 # Goto Kubernetes
 
-[![github workflow](https://github.com/maguowei/gotok8s/workflows/k8s%20image%20sync/badge.svg)](https://github.com/maguowei/gotok8s/actions)
+[![github workflow](https://github.com/gotok8s/gotok8s/workflows/k8s%20image%20sync/badge.svg)](https://github.com/gotok8s/gotok8s/actions)
 
 ## 安装 `Kubernetes`
 
