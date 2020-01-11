@@ -22,3 +22,8 @@ $ sudo mv ./rke /usr/local/bin/rke
 $ rke up
 $ rke remove
 ```
+
+## Ref
+
+- [RKE Kubernetes Installation](https://rancher.com/docs/rke/latest/en/installation/)
+- [Rancher 中文文档](https://docs.rancher.cn/)
