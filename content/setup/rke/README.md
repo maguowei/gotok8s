@@ -18,8 +18,22 @@ $ docker run --name rancher -d --restart=unless-stopped \
 $ curl -Lo ./rke https://github.com/rancher/rke/releases/download/v1.0.0/rke_linux-amd64
 $ chmod +x ./rke
 $ sudo mv ./rke /usr/local/bin/rke
+```
 
+## Install Docker on Node
+
+```bash
+$ curl -fsSL https://get.docker.com/ | sh
+$ sudo usermod -aG docker ubuntu
+```
+
+## Up and Down
+
+```bash
+# Bring the cluster up
 $ rke up
+
+# Teardown the cluster and clean cluster nodes
 $ rke remove
 ```
 
