@@ -89,7 +89,7 @@ $ kubectl proxy
 
 ```bash
 # 创建 ServiceAccount kubernetes-dashboard-admin 并绑定集群管理员权限
-$ kubectl apply -f dashboard-admin.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/gotok8s/gotok8s/master/dashboard-admin.yaml
 
 # 获取登陆 token
 $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep kubernetes-dashboard-admin | awk '{print $1}')
