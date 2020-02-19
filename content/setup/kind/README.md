@@ -11,7 +11,7 @@ sudo mv ./kind /user/local/bin/kind
 kind create cluster --config config.yaml
 
 # 使用
-export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
+kubectl config use-context kind-kind
 kubectl get pod -A
 
 #删除集群
