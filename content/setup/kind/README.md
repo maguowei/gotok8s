@@ -3,7 +3,7 @@
 - [kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind)
 
 ```bash
-curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.7.0/kind-darwin-amd64
+curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.8.0/kind-darwin-amd64
 chmod +x ./kind
 sudo mv ./kind /user/local/bin/kind
 
