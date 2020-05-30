@@ -134,6 +134,30 @@ $ helm install my-redis stable/redis
 $ helm uninstall my-redis
 ```
 
+## [Istio](https://istio.io/)
+
+### [下载并安装 Istio](https://istio.io/docs/setup/getting-started/)
+
+```bash
+$ curl -L https://istio.io/downloadIstio | sh -
+# 进入下载的文件夹，这里以 `istio-1.6.0` 为例
+$ cd istio-1.6.0
+$ export PATH=$PWD/bin:$PATH
+# 安装
+$ istioctl manifest apply --set profile=demo
+# 设置自动注入 Envoy sidecar proxies
+$ kubectl label namespace default istio-injection=enabled
+```
+
+### 部署示例
+
+```bash
+# 部署
+$ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+# 查看示例返回
+$ kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
+```
+
 ## 升级 Kubernetes 版本
 
 ```bash
