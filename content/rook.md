@@ -1,13 +1,11 @@
 # [Rook](https://github.com/rook/rook)
 
 ```bash
-$ docker pull rook/ceph:master
-
-# 安装 Rook Operator: https://rook.io/docs/rook/master/helm-operator.html
-$ kubectl create -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/operator.yaml
-
-# 创建 Rook cluster
-$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/cluster.yaml
+# 部署 Rook Operator
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/common.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/operator.yaml
+# 创建 Rook Ceph Cluster
+$ kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/cluster/examples/kubernetes/ceph/cluster-test.yaml
 
 # 列出 rook-ceph 命名空间下的 pods
 $ kubectl -n rook-ceph get pod
