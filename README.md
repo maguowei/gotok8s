@@ -130,7 +130,7 @@ $ helm repo update
 # 测试安装 redis chart
 $ helm install my-redis stable/redis
 
-# 删除 mysql
+# 删除 redis
 $ helm uninstall my-redis
 ```
 
