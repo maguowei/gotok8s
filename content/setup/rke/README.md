@@ -15,7 +15,7 @@ $ docker run --name rancher -d --restart=unless-stopped \
 
 ```bash
 # add .ssh/id_rsa.pub to server .ssh/authorized_keys
-$ curl -Lo ./rke https://github.com/rancher/rke/releases/download/v1.1.2/rke_linux-amd64
+$ curl -Lo ./rke https://github.com/rancher/rke/releases/download/v1.1.3/rke_linux-amd64
 $ chmod +x ./rke
 $ sudo mv ./rke /usr/local/bin/rke
 ```
