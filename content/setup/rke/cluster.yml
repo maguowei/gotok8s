@@ -14,6 +14,6 @@ nodes:
     role:
       - worker
 cluster_name: rke
-kubernetes_version: v1.18.3-rancher2-2
+kubernetes_version: v1.18.6-rancher1-1
 network:
   plugin: flannel
