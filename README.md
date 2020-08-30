@@ -67,8 +67,8 @@ $ mkdir -p $HOME/.kube
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-# 使用 `kube-router` 网络
-$ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
+# 使用 `flannel` 网络
+$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 # Master Isolation (if single-machine Kubernetes cluster )
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
