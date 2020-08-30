@@ -140,8 +140,8 @@ $ helm uninstall my-redis
 
 ```bash
 $ curl -L https://istio.io/downloadIstio | sh -
-# 进入下载的文件夹，这里以 `istio-1.6.0` 为例
-$ cd istio-1.6.0
+# 进入下载的文件夹，这里以 `istio-1.7.0` 为例
+$ cd istio-1.7.0
 $ export PATH=$PWD/bin:$PATH
 # 安装
 $ istioctl manifest apply --set profile=demo

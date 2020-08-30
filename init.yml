@@ -2,12 +2,12 @@ apiVersion: kubeadm.k8s.io/v1beta2
 kind: InitConfiguration
 nodeRegistration:
   kubeletExtraArgs:
-    pod-infra-container-image: gotok8s/pause:3.1
+    pod-infra-container-image: gotok8s/pause:3.2
 ---
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
 clusterName: kubernetes
 imageRepository: gotok8s
-kubernetesVersion: v1.18.5
+kubernetesVersion: v1.19.0
 networking:
   podSubnet: 10.244.0.0/16
