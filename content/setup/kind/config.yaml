@@ -17,8 +17,8 @@ kubeadmConfigPatches:
   imageRepository: gotok8s
 nodes:
 - role: control-plane
-  image: kindest/node:v1.19.0
+  image: kindest/node:v1.19.1
 - role: worker
-  image: kindest/node:v1.19.0
+  image: kindest/node:v1.19.1
 - role: worker
-  image: kindest/node:v1.19.0
+  image: kindest/node:v1.19.1
