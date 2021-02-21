@@ -8,6 +8,6 @@ apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
 clusterName: kubernetes
 imageRepository: gotok8s
-kubernetesVersion: v1.19.2
+kubernetesVersion: v1.20.4
 networking:
   podSubnet: 10.244.0.0/16

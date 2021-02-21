@@ -107,14 +107,12 @@ $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashbo
 
 ```bash
 # Linux 用户
-$ curl -s https://get.helm.sh/helm-v3.1.0-linux-amd64.tar.gz | tar xzv
+$ curl -s https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
 # Mac 用户
-$ curl -s https://get.helm.sh/helm-v3.1.0-darwin-amd64.tar.gz | tar xzv
-$ sudo cp darwin-amd64/helm /usr/local/bin
-$ rm -rf darwin-amd64
+$ brew install helm
 ```
 
 ### 使用
@@ -140,11 +138,11 @@ $ helm uninstall my-redis
 
 ```bash
 $ curl -L https://istio.io/downloadIstio | sh -
-# 进入下载的文件夹，这里以 `istio-1.7.0` 为例
-$ cd istio-1.7.0
+# 进入下载的文件夹，这里以 `istio-1.9.0` 为例
+$ cd istio-1.9.0
 $ export PATH=$PWD/bin:$PATH
 # 安装
-$ istioctl manifest apply --set profile=demo
+$ istioctl install --set profile=demo -y
 # 设置自动注入 Envoy sidecar proxies
 $ kubectl label namespace default istio-injection=enabled
 ```
