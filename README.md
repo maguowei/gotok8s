@@ -132,6 +132,16 @@ $ helm install my-redis stable/redis
 $ helm uninstall my-redis
 ```
 
+## [NGINX Ingress](https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx)
+
+```bash
+# install by helm
+$ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+$ helm repo update
+
+$ helm install ingress-nginx ingress-nginx/ingress-nginx
+```
+
 ## [Istio](https://istio.io/)
 
 ### [下载并安装 Istio](https://istio.io/docs/setup/getting-started/)

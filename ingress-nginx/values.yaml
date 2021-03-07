@@ -1,0 +1,17 @@
+controller:
+  name: controller
+  image:
+    repository: k8s.gcr.io/ingress-nginx/controller
+    tag: "v0.44.0"
+    pullPolicy: IfNotPresent
+
+## Default 404 backend
+##
+defaultBackend:
+  enabled: true
+  name: defaultbackend
+  image:
+    repository: k8s.gcr.io/defaultbackend-amd64
+    tag: "1.5"
+    pullPolicy: IfNotPresent
+
