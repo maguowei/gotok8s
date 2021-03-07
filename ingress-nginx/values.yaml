@@ -5,6 +5,30 @@ controller:
     tag: "v0.44.0"
     pullPolicy: IfNotPresent
 
+  service:
+    enabled: true
+
+    ports:
+      http: 80
+      https: 443
+
+    targetPorts:
+      http: http
+      https: https
+
+    # type: LoadBalancer
+    type: NodePort
+    # nodePorts:
+    #   http: 32080
+    #   https: 32443
+    #   tcp:
+    #     8080: 32808
+    # nodePorts:
+    #   http: ""
+    #   https: ""
+    #   tcp: {}
+    #   udp: {}
+
 ## Default 404 backend
 ##
 defaultBackend:

@@ -2,7 +2,7 @@
 
 ```bash
 # install
-$ helm install ingress-nginx ingress-nginx/ingress-nginx
+$ helm install  -f values.yaml ingress-nginx ingress-nginx/ingress-nginx
 
 # run example
 $ kubectl run my-nginx --image=nginx --port=80 --expose=true
