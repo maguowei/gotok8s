@@ -3,10 +3,8 @@
 ## Install Rancher
 
 ```bash
-$ docker run --name rancher -d --restart=unless-stopped \
-  -p 8080:80 -p 8443:443 \
-  -v rancher:/var/lib/rancher \
-  rancher/rancher:latest
+# run rancher
+$ docker run --name rancher --privileged -d --restart=unless-stopped -p 8080:80 -p 8443:443 -v rancher:/var/lib/rancher rancher/rancher
 ```
 
 ## Install RKE
