@@ -56,7 +56,9 @@ $ KUBERNETES_RELEASE_VERSION="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
 # 可以用下面的命令列出 kubeadm 需要的 images
 $ kubeadm config images list --kubernetes-version=${KUBERNETES_RELEASE_VERSION}
 # 提前拉取所需的镜像
+$ docker pull gotok8s/coredns:v1.8.0 && docker tag gotok8s/coredns/coredns:v1.8.0
 $ kubeadm config images pull --config init.yml
+
 # 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
 $ sudo kubeadm init --config init.yml
 # 或者执行(忽略Docker版本检查)

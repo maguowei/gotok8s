@@ -4,8 +4,8 @@ on:
   schedule:
   - cron: 0 */6 * * *
 jobs:
-  github:
-    name: github k8s image sync
+  dockerhub:
+    name: dockerhub k8s image sync
     runs-on: ubuntu-latest
     steps:
     - name: sync
