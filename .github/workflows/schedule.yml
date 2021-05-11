@@ -1,10 +1,11 @@
 name: k8s image sync
 on:
+  workflow_dispatch:
   schedule:
   - cron: 0 */6 * * *
 jobs:
-  k8s-image-sync:
-    name: k8s image sync
+  github:
+    name: github k8s image sync
     runs-on: ubuntu-latest
     steps:
     - name: sync
@@ -13,3 +14,14 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: gotok8s
+  aliyun:
+    name: aliyun k8s image sync
+    runs-on: ubuntu-latest
+    steps:
+    - name: sync
+      uses: maguowei/actions/k8s-image-sync@master
+      with:
+        registry: registry.cn-hangzhou.aliyuncs.com
+        username: ${{ secrets.ALIYUN_DOCKER_USERNAME }}
+        password: ${{ secrets.ALIYUN_DOCKER_PASSWORD }}
+        repository: gok8s
