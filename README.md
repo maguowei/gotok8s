@@ -56,7 +56,7 @@ $ KUBERNETES_RELEASE_VERSION="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
 # 可以用下面的命令列出 kubeadm 需要的 images
 $ kubeadm config images list --kubernetes-version=${KUBERNETES_RELEASE_VERSION}
 # 提前拉取所需的镜像
-$ docker pull gotok8s/coredns:v1.8.0 && docker tag gotok8s/coredns:v1.8.0 gotok8s/coredns/coredns:v1.8.0
+$ docker pull gotok8s/coredns:v1.8.4 && docker tag gotok8s/coredns:v1.8.4 gotok8s/coredns/coredns:v1.8.4
 $ kubeadm config images pull --config init.yml
 
 # 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
@@ -109,7 +109,7 @@ $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashbo
 
 ```bash
 # Linux 用户
-$ curl -s https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz | tar xzv
+$ curl -s https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
@@ -119,16 +119,16 @@ $ brew install helm
 
 ### 使用
 
-```bash
-# 使用 azure.cn 提供的 charts 镜像
-$ helm repo add stable https://mirror.azure.cn/kubernetes/charts/
-$ helm repo add incubator https://mirror.azure.cn/kubernetes/charts-incubator/
+- [Artifact Hub](https://artifacthub.io/)
 
-# 更新本地 charts repo
-$ helm repo update
+```bash
+
+
+# 添加 charts repo
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 # 测试安装 redis chart
-$ helm install my-redis stable/redis
+$ helm install my-redis bitnami/redis
 
 # 删除 redis
 $ helm uninstall my-redis
@@ -151,7 +151,7 @@ $ helm install ingress-nginx ingress-nginx/ingress-nginx
 ```bash
 $ curl -L https://istio.io/downloadIstio | sh -
 # 进入下载的文件夹，这里以 `istio-1.9.0` 为例
-$ cd istio-1.9.0
+$ cd istio-1.11.4
 $ export PATH=$PWD/bin:$PATH
 # 安装
 $ istioctl install --set profile=demo -y
