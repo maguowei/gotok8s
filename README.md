@@ -109,7 +109,7 @@ $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashbo
 
 ```bash
 # Linux 用户
-$ curl -s https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz | tar xzv
+$ curl -s https://get.helm.sh/helm-v3.8.1-linux-amd64.tar.gz | tar xzv
 $ sudo cp linux-amd64/helm /usr/local/bin
 $ rm -rf linux-amd64
 
