@@ -1,0 +1,19 @@
+name: deploy kubernetes
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  deploy:
+    name: k8s
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: install kubelet kubeadm kubectl
+      run: |
+        sudo ./script/setup.sh
+    - name: pull images
+      run: |
+        ./script/pull-images.sh
+    - name: kubeadm init
+      run: |
+        sudo kubeadm init --config init.yml
