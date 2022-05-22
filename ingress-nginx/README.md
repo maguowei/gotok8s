@@ -2,8 +2,9 @@
 
 ```bash
 # install
-$ helm install  -f values.yaml ingress-nginx ingress-nginx/ingress-nginx
-
+$ helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
 # run example
 $ kubectl run my-nginx --image=nginx --port=80 --expose=true
 $ kubectl apply -f example-ingress.yaml
@@ -16,3 +17,7 @@ $ kubectl delete service my-nginx
 $ kubectl delete pod my-nginx
 $ kubectl delete -f example-ingress.yaml
 ```
+
+## Refs
+
+- [kubernetes/ingress-nginx](https://github.com/kubernetes/ingress-nginx)
