@@ -20,6 +20,12 @@ $ kubectl get nodes
 $ docker run --name rancher --privileged -d --restart=unless-stopped -p 8080:80 -p 8443:443 -v rancher:/var/lib/rancher rancher/rancher
 ```
 
+## Uninstall RKE2
+
+```bash
+$ sudo rke2-uninstall.sh
+```
+
 ## Ref
 
 - [RKE2 Docs](https://docs.rke2.io/)
