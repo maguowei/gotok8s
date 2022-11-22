@@ -18,46 +18,29 @@ $ curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
     - [Alibaba Kubernetes mirror](https://opsx.alibaba.com/mirror)
 
 ```bash
-# root（sudo -i)
-
 # Debian/Ubuntu
-apt-get update && apt-get install -y apt-transport-https
-curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
-cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
-deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
-EOF
-apt-get update
-apt-get install -y kubelet kubeadm kubectl
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
 
-# CentOS/RHEL/Fedora
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
-EOF
-setenforce 0
-yum install -y kubelet kubeadm kubectl
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
 3. 使用 `kubeadm` 创建 `Kubernetes` 集群
 
 ```bash
-# 确保关闭交换空间(running with swap on is not supported. Please disable swap)
-$ sudo swapoff -a
-# 永久关闭需要编辑 `/etc/fstab` 注释掉 `swap` 所在行
-
 # 获取最新 Kubernetes 版本号
 $ KUBERNETES_RELEASE_VERSION="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
 
 # 可以用下面的命令列出 kubeadm 需要的 images
 $ kubeadm config images list --kubernetes-version=${KUBERNETES_RELEASE_VERSION}
 # 提前拉取所需的镜像
-$ docker pull gotok8s/coredns:v1.8.6 && docker tag gotok8s/coredns:v1.8.6 gotok8s/coredns/coredns:v1.8.6
-$ kubeadm config images pull --config init.yml
+$ sudo kubeadm config images pull --config init.yml
 
 # 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
 $ sudo kubeadm init --config init.yml
