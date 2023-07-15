@@ -4,77 +4,10 @@
 
 ## 安装 `Kubernetes`
 
-> 对于 `Mac` 用户可以参考:  [k8s-docker-desktop-for-mac](https://github.com/maguowei/k8s-docker-desktop-for-mac), 
-通过 `Docker Desktop for Mac` 开启和使用 Kubernetes
-
-1. [安装Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-
-```bash
-$ curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-```
-
-2. [安装 kubeadm, kubelet and kubectl](https://kubernetes.io/docs/setup/independent/install-kubeadm/)
-
-    - [Alibaba Kubernetes mirror](https://opsx.alibaba.com/mirror)
-
-```bash
-# root（sudo -i)
-
-# Debian/Ubuntu
-apt-get update && apt-get install -y apt-transport-https
-curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
-cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
-deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
-EOF
-apt-get update
-apt-get install -y kubelet kubeadm kubectl
-
-# CentOS/RHEL/Fedora
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
-EOF
-setenforce 0
-yum install -y kubelet kubeadm kubectl
-```
-
-3. 使用 `kubeadm` 创建 `Kubernetes` 集群
-
-```bash
-# 确保关闭交换空间(running with swap on is not supported. Please disable swap)
-$ sudo swapoff -a
-# 永久关闭需要编辑 `/etc/fstab` 注释掉 `swap` 所在行
-
-# 获取最新 Kubernetes 版本号
-$ KUBERNETES_RELEASE_VERSION="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
-
-# 可以用下面的命令列出 kubeadm 需要的 images
-$ kubeadm config images list --kubernetes-version=${KUBERNETES_RELEASE_VERSION}
-# 提前拉取所需的镜像
-$ docker pull gotok8s/coredns:v1.8.6 && docker tag gotok8s/coredns:v1.8.6 gotok8s/coredns/coredns:v1.8.6
-$ kubeadm config images pull --config init.yml
-
-# 集群初始化（init.yml文件中配置了使用阿里的镜像仓库）
-$ sudo kubeadm init --config init.yml
-# 或者执行(忽略Docker版本检查)
-$ sudo kubeadm init --config init.yml --ignore-preflight-errors=SystemVerification
-
-# KUBECONFIG 设置
-$ mkdir -p $HOME/.kube
-$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-# 使用 `flannel` 网络
-$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
-# Master Isolation (if single-machine Kubernetes cluster )
-$ kubectl taint nodes --all node-role.kubernetes.io/master-
-```
+- [kind](content/setup/kind/README.md)
+- [k3d](content/setup/k3d/README.md)
+- [k3s](content/setup/k3s/README.md)
+- [rke](content/setup/rke/README.md)
 
 ## [Kubernetes Dashboard](https://github.com/kubernetes/dashboard)
 
