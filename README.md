@@ -83,8 +83,8 @@ $ helm install ingress-nginx ingress-nginx/ingress-nginx
 
 ```bash
 $ curl -L https://istio.io/downloadIstio | sh -
-# 进入下载的文件夹，这里以 `istio-1.9.0` 为例
-$ cd istio-1.11.4
+# 进入下载的文件夹，这里以 `istio-1.18.1` 为例
+$ cd istio-1.18.1
 $ export PATH=$PWD/bin:$PATH
 # 安装
 $ istioctl install --set profile=demo -y
@@ -99,11 +99,4 @@ $ kubectl label namespace default istio-injection=enabled
 $ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 # 查看示例返回
 $ kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
-```
-
-## 升级 Kubernetes 版本
-
-```bash
-# 修改 `init.yml` 中 `kubernetesVersion` 版本号， 执行
-sudo kubeadm upgrade apply --config init.yml --ignore-preflight-errors=SystemVerification
 ```
