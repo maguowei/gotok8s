@@ -13,5 +13,5 @@ kubectl config use-context kind-kind
 kubectl get pod -A
 
 #删除集群
-kind delete cluster
+kind delete cluster --name kind-cluster
 ```
