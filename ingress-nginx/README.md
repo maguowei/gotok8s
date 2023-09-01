@@ -1,10 +1,6 @@
 # nginx-ingress
 
 ```bash
-# install
-$ helm upgrade --install ingress-nginx ingress-nginx \
-  --repo https://kubernetes.github.io/ingress-nginx \
-  --namespace ingress-nginx --create-namespace
 # run example
 $ kubectl run my-nginx --image=nginx --port=80 --expose=true
 $ kubectl apply -f example-ingress.yaml
