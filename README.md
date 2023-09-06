@@ -9,31 +9,6 @@
 - [k3s](content/setup/k3s/README.md)
 - [rke](content/setup/rke/README.md)
 
-## [Kubernetes Dashboard](https://github.com/kubernetes/dashboard)
-
-### 部署 Kubernetes Dashboard
-
-```bash
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
-
-# 开启本机访问代理
-$ kubectl proxy
-```
-
-### 创建`Dashboard`管理员用户并用`token`登陆
-
-```bash
-# 创建 ServiceAccount kubernetes-dashboard-admin 并绑定集群管理员权限
-$ kubectl apply -f https://raw.githubusercontent.com/gotok8s/gotok8s/master/dashboard-admin.yaml
-
-# 获取登陆 token
-$ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep kubernetes-dashboard-admin | awk '{print $1}')
-```
-
-通过下面的连接访问 Dashboard: [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/)
-
-输入上一步获取的token, 验证并登陆。
-
 ## [Helm](https://github.com/kubernetes/helm)
 
 ### 安装
@@ -41,12 +16,6 @@ $ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashbo
 详细使用说明请参考 [`Helm`官方文档](https://v3.helm.sh/docs/)
 
 ```bash
-# Linux 用户
-$ curl -s https://get.helm.sh/helm-v3.8.1-linux-amd64.tar.gz | tar xzv
-$ sudo cp linux-amd64/helm /usr/local/bin
-$ rm -rf linux-amd64
-
-# Mac 用户
 $ brew install helm
 ```
 
@@ -55,8 +24,6 @@ $ brew install helm
 - [Artifact Hub](https://artifacthub.io/)
 
 ```bash
-
-
 # 添加 charts repo
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 
@@ -66,6 +33,37 @@ $ helm install my-redis bitnami/redis
 # 删除 redis
 $ helm uninstall my-redis
 ```
+
+## [Kubernetes Dashboard](https://github.com/kubernetes/dashboard)
+
+### 部署 Kubernetes Dashboard
+
+```bash
+$ helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+$ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
+```
+
+### 创建`Dashboard`管理员用户并用`token`登陆
+
+- [Creating sample user](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md)
+
+```bash
+# 创建 ServiceAccount admin-user 并绑定集群管理员权限
+$ kubectl apply -f https://raw.githubusercontent.com/gotok8s/gotok8s/master/dashboard-adminuser.yaml
+
+# 获取登陆 token
+$ kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath={".data.token"} | base64 -d
+```
+
+### 访问Dashboard
+
+```bash
+$ kubectl -n kubernetes-dashboard port-forward service/kubernetes-dashboard 8443:443
+```
+通过下面的连接访问 Dashboard: [https://127.0.0.1:8443/](https://127.0.0.1:8443/)
+
+输入上一步获取的token, 验证并登陆。
+
 
 ## [NGINX Ingress](https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx)
 
