@@ -1,0 +1,10 @@
+controller:
+  config:
+    allow-snippet-annotations: true
+  extraVolumes:
+    - name: lua-scripts
+      configMap:
+        name: lua-scripts
+  extraVolumeMounts:
+    - name: lua-scripts
+      mountPath: /etc/nginx/lua-scripts

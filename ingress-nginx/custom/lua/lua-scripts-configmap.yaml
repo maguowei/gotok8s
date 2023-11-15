@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lua-scripts
+  namespace: ingress-nginx
+data:
+  script.lua: |
+    -- 在这里编写 Lua 代码
+    local args = ngx.req.get_uri_args()
+    if args["debug"] then
+      -- 当参数中包含 debug 时执行以下内容
+      local cjson = require "cjson"
+      ngx.header["Content-Type"] = "application/json"
+
+      local data = {
+        debug = "true",
+        request_method = ngx.var.request_method,
+        request_uri = ngx.var.request_uri,
+        http_version = ngx.req.http_version(),
+        user_agent = ngx.req.get_headers(),
+        client_ip = ngx.var.remote_addr,
+        query_params = args
+      }
+
+      local json_data = cjson.encode(data)
+      ngx.say(json_data)
+    end
