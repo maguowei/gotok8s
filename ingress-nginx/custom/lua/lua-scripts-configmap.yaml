@@ -4,8 +4,7 @@ metadata:
   name: lua-scripts
   namespace: ingress-nginx
 data:
-  script.lua: |
-    -- 在这里编写 Lua 代码
+  debug.lua: |
     local args = ngx.req.get_uri_args()
     if args["debug"] then
       -- 当参数中包含 debug 时执行以下内容
