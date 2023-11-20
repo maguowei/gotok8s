@@ -4,7 +4,7 @@ metadata:
   name: hello
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      access_by_lua_file /etc/nginx/lua-scripts/debug.lua;
+      access_by_lua_file /etc/nginx/lua-scripts/signature.lua;
 spec:
   ingressClassName: nginx
   rules:

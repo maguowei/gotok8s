@@ -24,3 +24,64 @@ data:
       local json_data = cjson.encode(data)
       ngx.say(json_data)
     end
+  signature.lua: |
+    local resty_md5 = require "resty.md5"
+    local str = require "resty.string"
+
+    function sig(data_dict, appkey)
+      local keys = {}
+      for key in pairs(data_dict) do
+          if key ~= "sig" then
+              table.insert(keys, key)
+          end
+      end
+
+      table.sort(keys)
+
+      local sig_string = ""
+      for _, key in ipairs(keys) do
+          sig_string = sig_string .. key .. "=" .. tostring(data_dict[key])
+      end
+
+      local sig_str = sig_string .. appkey
+      local md5 = resty_md5:new()
+      if not md5 then
+          ngx.log(ngx.ERR, "failed to create md5 object")
+          return nil
+      end
+
+      md5:update(sig_str)
+      local digest = md5:final()
+
+      return str.to_hex(digest)
+    end
+
+    function verify_signature(data_dict, appkey, received_sig)
+      local expected_sig = sig(data_dict, appkey)
+
+      ngx.say(expected_sig)
+
+      if expected_sig == received_sig then
+          return true
+      else
+          return false
+      end
+    end
+
+    local data = {
+      param1 = "value1",
+      param2 = "value2",
+      appkey = "your_appkey"
+    }
+
+    local received_signature = "ea831767b19803efa0fb4cd7d01b00fd"
+
+    -- 调用签名验证方法
+    local is_valid = verify_signature(data, data.appkey, received_signature)
+
+    -- 判断验证结果
+    if is_valid then
+        ngx.say("Signature is valid")
+    else
+        ngx.say("Signature is not valid")
+    end
