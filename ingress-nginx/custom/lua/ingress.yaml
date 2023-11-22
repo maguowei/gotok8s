@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: hello
   annotations:
+    nginx.ingress.kubernetes.io/proxy-set-header: "X-Request-ID $request_id"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       access_by_lua_file /etc/nginx/lua-scripts/signature.lua;
 spec:

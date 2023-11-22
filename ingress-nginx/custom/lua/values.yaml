@@ -1,6 +1,15 @@
 controller:
   config:
     allow-snippet-annotations: true
+    enable-opentelemetry: "true"
+    opentelemetry-operation-name: "HTTP $request_method $service_name $uri"
+    otlp-collector-host: "10.2.145.191"
+    otlp-collector-port: "4317"
+    otel-service-name: "ingress-nginx"
+    otel-sampler: "AlwaysOn"
+    otel-sampler-ratio: "1.0"
+  opentelemetry:
+    enabled: true
   extraVolumes:
     - name: lua-scripts
       configMap:
