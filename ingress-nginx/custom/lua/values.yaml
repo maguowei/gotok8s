@@ -10,6 +10,13 @@ controller:
     otel-sampler-ratio: "1.0"
   opentelemetry:
     enabled: true
+  metrics:
+    enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
+        prometheus.io/path: "/metrics"
   extraVolumes:
     - name: lua-scripts
       configMap:

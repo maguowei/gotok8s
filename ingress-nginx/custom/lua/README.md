@@ -12,6 +12,9 @@ kubectl apply -f ingress-nginx/custom/lua/ingress.yaml
 
 # ingrss 升级
 helm upgrade -n ingress-nginx ingress-nginx ingress-nginx/ingress-nginx -f ingress-nginx/custom/lua/values.yaml
+
+# 删除ingress
+helm delete -n ingress-nginx ingress-nginx
 ```
 
 ## 依赖部署
